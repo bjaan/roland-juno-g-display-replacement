@@ -8,17 +8,23 @@
  * Roland Juno G LCD Emulator
  */
 
+// Define in setup to disable all #warnings in library (can be put in User_Setup_Select.h)
+#define DISABLE_ALL_LIBRARY_WARNINGS
+
 #include <Arduino.h>
 
 #include <SPI.h>
 #include <TFT_eSPI.h> // Hardware-specific library
+#ifdef DRAW_SPLASH
 #include <LCDJunoG_splash.h>
+#endif
 #include <LCDJunoG_extra.h>
 
 TFT_eSPI tft = TFT_eSPI();       // Invoke custom library
 
 #include "LCDJunoG.h"
-LCDJunoG lcdJunoG[2];
+LCDJunoG lcdJunoG_cs1;
+LCDJunoG lcdJunoG_cs2;
 
 #define ZOOM_X 2
 #define ZOOM_Y 3
@@ -26,17 +32,17 @@ LCDJunoG lcdJunoG[2];
 uint tft_xoffset = 0;
 uint tft_yoffset = 0;
 
-volatile uint16_t buffer_cs1[2][12*123*10];
+volatile uint16_t buffer_cs1[12*123*10];
+volatile uint16_t buffer_cs2[12*123*10];
 
 uint32_t tft_bgcolor = TFT_BLACK;
 uint32_t tft_bgcolor_prev = TFT_BLACK;
 
-void intelaced_FillScreen(uint32_t bgcolor) {
+void fillscreen_interlaced(uint32_t bgcolor) {
   tft.fillScreen(TFT_BLACK);
-  for (uint y = 0; y < tft.height(); y++) {
-    for (uint x = 0; x < tft.width(); x++) {
-      if (x % ZOOM_X  == 0 && y % ZOOM_Y == 0)
-        tft.drawPixel(x, y, bgcolor);
+  for (uint y = 0; y < tft.height(); y+=ZOOM_Y) {
+    for (uint x = 0; x < tft.width(); x+=ZOOM_X) {
+      tft.drawPixel(x, y, bgcolor);
     }
   }
 }
@@ -46,22 +52,18 @@ bool force_refresh = false;
 void tft_change_bgcolor() {
   uint32_t analog_read = analogRead(JUNO_BRGT);
   //Serial.println("ANALOG"+ String(analog_read));
-  if ( analog_read <= 2850) {
+  if ( analog_read <= 2900) {
     tft_bgcolor = TFT_ORANGE;
-  } else if ( analog_read > 2650 && analog_read <= 2850) {
+  } else if ( analog_read > 2900 && analog_read <= 3100) {
     tft_bgcolor = TFT_SKYBLUE;
-  } else if ( analog_read > 2850 && analog_read <= 3000) {
-    tft_bgcolor = TFT_GREENYELLOW;
-  } else if ( analog_read > 3000 && analog_read <= 3150) {
-    tft_bgcolor = TFT_YELLOW;
-  } else if ( analog_read > 3150 && analog_read <= 3300) {
+  } else if ( analog_read > 3100 && analog_read <= 3300) {
     tft_bgcolor = TFT_WHITE;
   } else if ( analog_read > 3300) {
     tft_bgcolor = TFT_CYAN;
   } 
 
   if (tft_bgcolor != tft_bgcolor_prev) {
-    intelaced_FillScreen(tft_bgcolor);
+    fillscreen_interlaced(tft_bgcolor);
     tft_bgcolor_prev = tft_bgcolor;
     force_refresh = true;
   }
@@ -72,9 +74,9 @@ void setup()
   analogReadResolution(12);
   uint32_t analog_read = analogRead(JUNO_BRGT);
   //Serial.begin(115200);
-  // delay(2000);
+  //delay(2000);
   //Serial.setTimeout(50);
-  Serial.println("juno g lcd emulator");
+  //Serial.println("juno g lcd emulator");
   tft.init();
   //tft.setRotation(2);
   tft.setRotation(1);
@@ -97,8 +99,8 @@ void setup()
   tft.setTextSize(2);
   
   tft.setTextDatum(TC_DATUM);
-  tft.drawString("Roland Juno G Lcd Emulator v0.1", tft.width() /2, tft.height() / 2 - 20 );
-  tft.drawString("CPU_FREQ:" + String(rp2040.f_cpu()), tft.width() /2, tft.height() / 2 + 10 );
+  tft.drawString("Roland JUNO-G LCD Emulator v0.2", tft.width() /2, tft.height() / 2 - 20 );
+  //tft.drawString("CPU_FREQ:" + String(rp2040.f_cpu()), tft.width() /2, tft.height() / 2 + 10 );
   delay(500);
 #endif
 
@@ -110,58 +112,36 @@ void setup()
   tft.setTextSize(1);
   
   // Setup our DMX Input to read on GPIO 0, from channel 1 to 3
-  lcdJunoG[0].begin(2, pio0, 1);
-  lcdJunoG[1].begin(2, pio1, 2);
-  lcdJunoG[0].read_async(buffer_cs1[0]);
-  lcdJunoG[1].read_async(buffer_cs1[1]);
+  lcdJunoG_cs1.begin(2, pio0, 1);
+  lcdJunoG_cs2.begin(2, pio1, 2);
+  lcdJunoG_cs1.read_async(buffer_cs1);
+  lcdJunoG_cs2.read_async(buffer_cs2);
 
   // Setup the onboard LED so that we can blink when we receives packets
   pinMode(LED_BUILTIN, OUTPUT);
 }
 
-volatile int start_index[2] = {0,0};
-volatile uint8_t page[2] = {0,0};
-volatile uint8_t xx[2] = {0,0};
-
-void draw_juno_g(uint8_t val, uint8_t rs, uint8_t cs) {
-  if (rs == 0) {
-#ifdef SHOWCMD
-    showcmd( cs, val );
-#endif
-    if ((val >> 4) == 0xb) {
-      page[cs] = val & 0xf;
-      xx[cs] = 0;
-    } 
-  } else if (rs == 1 ) {
-    if (xx[cs] < 120) {  // avoid overlap the right area
-      for (int i = 0; i < 8; i++ ) {
-        if (((val >> i) & 0x1) == 1) {
-          tft.drawPixel(tft_xoffset + 120 * cs * ZOOM_X + xx[cs] * ZOOM_X, tft_yoffset + (page[cs] * 8 + i ) * ZOOM_Y, TFT_BLACK);
-        } else {
-          tft.drawPixel(tft_xoffset + 120 * cs * ZOOM_X + xx[cs] * ZOOM_X, tft_yoffset + (page[cs] * 8 + i ) * ZOOM_Y, tft_bgcolor);
-        }
-      }
-      xx[cs]++;
-    }
-  }
-}
+volatile int start_index_cs1 = 0;
+volatile int start_index_cs2 = 0;
+volatile uint8_t page_cs1 = 0;
+volatile uint8_t page_cs2 = 0;
+volatile uint8_t xx_cs1 = 0;
+volatile uint8_t xx_cs2 = 0;
 
 int period = 500;
 unsigned long time_now = 0;
 unsigned long my_millis = 0;
-
-
 
 void loop()
 {  
   my_millis = millis();
 
   if(my_millis >= time_now + period){
-        time_now += period;
-        tft_change_bgcolor();
+    time_now += period;
+    tft_change_bgcolor();
   }
 
-  if(! force_refresh  && my_millis > 50 + lcdJunoG[0].latest_packet_timestamp() && my_millis > 50 + lcdJunoG[1].latest_packet_timestamp()) {
+  if(! force_refresh  && my_millis > 50 + lcdJunoG_cs1.latest_packet_timestamp() && my_millis > 50 + lcdJunoG_cs2.latest_packet_timestamp()) {
     //Serial.println("no data!");
     return;
   } 
@@ -171,15 +151,90 @@ void loop()
   }
   for (uint i = 0; i < 123*12; i++)  
   {
-    for (uint8_t j = 0; j <2; j++) {
-      uint8_t val = buffer_cs1[j][i] & 0xff;
-      uint8_t rs = (buffer_cs1[j][i] >> 9) & 1;
-      draw_juno_g(val, rs, j);
+    { //CS 1
+      uint8_t val = buffer_cs1[i] & 0xff;
+      uint8_t rs = (buffer_cs1[i] >> 9) & 1;
+      if (rs == 0) {
+#ifdef SHOWCMD
+          showcmd( cs, val );
+#endif
+        if ((val >> 4) == 0xb) {
+          page_cs1 = val & 0xf;
+          xx_cs1 = 0;
+        } 
+      } else if (rs == 1 ) {
+        if (xx_cs1 < 120) {  // avoid overlap the right area
+          int32_t x = tft_xoffset + xx_cs1 * ZOOM_X;
+          int32_t y = tft_yoffset + (page_cs1 * 8) * ZOOM_Y;
+          //for (int b = 0; b < 8; b++ ) {
+            //if (((val >> b) & 0x1) == 1) tft.drawPixel(x, y, TFT_BLACK); else tft.drawPixel(x, y, tft_bgcolor);
+            //y+= ZOOM_Y;
+            //unrolled:
+            if ((val & 0x1) == 0x1) tft.drawPixel(x, y, TFT_BLACK); else tft.drawPixel(x, y, tft_bgcolor);
+            y+= ZOOM_Y;
+            if ((val & 0x2) == 0x2) tft.drawPixel(x, y, TFT_BLACK); else tft.drawPixel(x, y, tft_bgcolor);
+            y+= ZOOM_Y;
+            if ((val & 0x4) == 0x4) tft.drawPixel(x, y, TFT_BLACK); else tft.drawPixel(x, y, tft_bgcolor);
+            y+= ZOOM_Y;
+            if ((val & 0x8) == 0x8) tft.drawPixel(x, y, TFT_BLACK); else tft.drawPixel(x, y, tft_bgcolor);
+            y+= ZOOM_Y;
+            if ((val & 0x10) == 0x10) tft.drawPixel(x, y, TFT_BLACK); else tft.drawPixel(x, y, tft_bgcolor);
+            y+= ZOOM_Y;
+            if ((val & 0x20) == 0x20) tft.drawPixel(x, y, TFT_BLACK); else tft.drawPixel(x, y, tft_bgcolor);
+            y+= ZOOM_Y;
+            if ((val & 0x40) == 0x40) tft.drawPixel(x, y, TFT_BLACK); else tft.drawPixel(x, y, tft_bgcolor);
+            y+= ZOOM_Y;
+            if ((val & 0x80) == 0x80) tft.drawPixel(x, y, TFT_BLACK); else tft.drawPixel(x, y, tft_bgcolor);
+          //}
+          xx_cs1++;
+        }
+      }
+    }
+    { //CS 2
+      uint8_t val = buffer_cs2[i] & 0xff;
+      uint8_t rs = (buffer_cs2[i] >> 9) & 1;
+      if (rs == 0) {
+#ifdef SHOWCMD
+        showcmd( cs, val );
+#endif
+        if ((val >> 4) == 0xb) {
+          page_cs2 = val & 0xf;
+          xx_cs2 = 0;
+        } 
+      } else if (rs == 1 ) {
+        if (xx_cs2 < 120) {  // avoid overlap the right area
+          int32_t x = tft_xoffset + xx_cs2 * ZOOM_X + 120 * ZOOM_X;
+          int32_t y = tft_yoffset + (page_cs2 * 8) * ZOOM_Y;
+          //for (int b = 0; b < 8; b++ ) {
+            //if (((val >> b) & 0x1) == 1) tft.drawPixel(x, y, TFT_BLACK); else tft.drawPixel(x, y, tft_bgcolor);
+            //y+= ZOOM_Y;
+            //unrolled:
+            if ((val & 0x1) == 0x1) tft.drawPixel(x, y, TFT_BLACK); else tft.drawPixel(x, y, tft_bgcolor);
+            y+= ZOOM_Y;
+            if ((val & 0x2) == 0x2) tft.drawPixel(x, y, TFT_BLACK); else tft.drawPixel(x, y, tft_bgcolor);
+            y+= ZOOM_Y;
+            if ((val & 0x4) == 0x4) tft.drawPixel(x, y, TFT_BLACK); else tft.drawPixel(x, y, tft_bgcolor);
+            y+= ZOOM_Y;
+            if ((val & 0x8) == 0x8) tft.drawPixel(x, y, TFT_BLACK); else tft.drawPixel(x, y, tft_bgcolor);
+            y+= ZOOM_Y;
+            if ((val & 0x10) == 0x10) tft.drawPixel(x, y, TFT_BLACK); else tft.drawPixel(x, y, tft_bgcolor);
+            y+= ZOOM_Y;
+            if ((val & 0x20) == 0x20) tft.drawPixel(x, y, TFT_BLACK); else tft.drawPixel(x, y, tft_bgcolor);
+            y+= ZOOM_Y;
+            if ((val & 0x40) == 0x40) tft.drawPixel(x, y, TFT_BLACK); else tft.drawPixel(x, y, tft_bgcolor);
+            y+= ZOOM_Y;
+            if ((val & 0x80) == 0x80) tft.drawPixel(x, y, TFT_BLACK); else tft.drawPixel(x, y, tft_bgcolor);
+          //}
+          xx_cs2++;
+        }
+      }
     }
   }
-
-  // Blink the LED to indicate that a packet was received
+ 
+/*
+  // Blink the LED to indicate that a packet was received 
   digitalWrite(LED_BUILTIN, HIGH);
   delay(10);
   digitalWrite(LED_BUILTIN, LOW);
+*/
 }
