@@ -147,23 +147,23 @@ Connect the _JUNO G LCD BOARD ASSY JPN 733402078_ to the main board again and ap
 
 First we need to remove the old hardware from the original display module, to then remake a new assembly for the new display
 
-1. Remove screws and black plastic holders:
+1. Remove screws and black plastic holders/standoffs:
 
       ![Disassembly](docs/screen_assembly_shown.png)
 
-2. Remove the actual LCD, it is stuck with double-sided tape to the white/transparent plate. Use a butter knife to separate the two layers.
+2. Remove the actual LCD, it is stuck with glue to the white/transparent plate. Use a butter knife to separate the two layers.
 
       ![Disassembly](docs/screen_disassembly.png)
 
 3. Flip the LCD open and turn over, now remove the board from the white/transparent plate. Use a butter knife to separate the board from the plate.
 
-4. Now remove the white stickering & black strip to end up with a transperent plate
+4. Now remove the white stickering & black strip to end up with a transparent plate
 
 ### 3.7. Strip the new display
 
 The display is stuck with double-sided tape to red board
 
-1. At the back disconnect the flat cable from the connector (you to slide out the black part first to open de connector)
+1. At the back disconnect the flat cable from the connector (you need to slide out the black part first to open de connector)
 
 2. Use a butter knife or flat spudger to split the display apart from the board. Be careful not to damage the flat cable, so pry free from the other side!
 
@@ -171,7 +171,7 @@ The display is stuck with double-sided tape to red board
 
 3. Remove the remaining double-sided tape from the display
 
-4. Cut of the card reader section of the red board.  Cut the spots on both sides of the flat cable connector. A dremel was used to cut the board partly on both side and it was then broken off. See the next picture to see where.
+4. Cut off the card reader section of the red board.  Cut the spots on both sides of the flat cable connector. A dremel was used to cut the board partly on both side and it was then broken off. See the next picture to see where.
 
 5. Now stick the display on the middle of the transparent plate
 
@@ -183,15 +183,15 @@ The display is stuck with double-sided tape to red board
 
       ![Assembly](docs/new_display_assembly.png)
 
-      We need to assure we have clearance for the new one to fit.
+      We need to assure we have room (height of the holders/standoffs) for the new one to fit.
 
-8. Remove the yellow plastic from the header on the board. To do so remove the jumper wires from the header, temporaryly unstick the board, disconnect the flat cable, heat the plastic with lighter and slide it to the top.
+8. Remove the yellow plastic from the header on the board. To do so remove the jumper wires from the header, temporarly unstick the board, disconnect the flat cable, heat the plastic with lighter/heat gun and slide it to the top.
 
 9. Place the jumper wires back, fold them over as close as possible to the board. So that they lay flat.
 
 10. Next, cut of the unused pins of the header on the red board
 
-11. Screw the black back the plastic holders
+11. Screw the back the plastic holders/standoffs
 
 12. Cover the red board with some isolating tape (e.g. Kapton tape)
 
@@ -203,11 +203,11 @@ The display is stuck with double-sided tape to red board
 
       ![Assembly](docs/new_display_assembly3.png)
 
-14. Place the _JUNO G LCD BOARD ASSY JPN 733402078_ back
+14. Place the _JUNO G LCD BOARD ASSY JPN 733402078_ board back and stick isolating tape on the Raspberry Pi Pico
 
       ![Assembly](docs/new_display_assembled.png)
 
-15. Remove the display protector (transparent sticker) and place black tape or cutout a piece of black paper which you stick with double sided tape, to cover the non-display area
+15. Remove the display protector (transparent sticker) and place black tape or cutout a piece of black paper which you stick with double-sided tape, to black-out/cover the non-display area
 
       ![Assembly](docs/new_display_taped.png)
 
@@ -217,7 +217,13 @@ Disconnect cables from the boards as needed and reassemble the keyboard again.
 
 ## Notes
 
-This project uses the Programmable I/O (PIO) feature on Raspberry Pi Pico instead of "bitbanging" to read the original display protocol.  Contrary to bitbanging, PIO uses no CPU cycles. Here is an overview about PIO on the Pico https://blues.io/blog/raspberry-pi-pico-pio/.  The original display uses two CS (Chip Select) lines, as the original screen is divided in two parts, one part gets updated through one CS line.
+This project uses the Programmable I/O (PIO) feature on Raspberry Pi Pico instead of "bitbanging" to read the original display protocol.
+
+Contrary to bitbanging, PIO uses no CPU cycles. Here is an overview about PIO on the Pico https://blues.io/blog/raspberry-pi-pico-pio/. 
+
+The original display uses two CS (Chip Select) lines, as the original screen is divided in two parts, one part gets updated through one CS line.
+
+Service Notes extract:
 
 ![Service Notes extract](docs/juno_g_service_notes_extract.png)
 
