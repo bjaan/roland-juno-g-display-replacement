@@ -7,7 +7,7 @@ This forked project aims to improve the display performance and provide proper h
 ![Replacement Done](docs/replacement_done.png)
 ![Welcome](docs/replacement_welcome.png)
 In Action:
-<video src='docs/new_display_in_action.mp4'></video>
+![In Action (Video)](docs/new_display_in_action.mp4)
 
 ## 1. Bill of Materials
 
