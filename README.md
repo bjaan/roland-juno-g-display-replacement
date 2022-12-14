@@ -26,10 +26,10 @@ https://user-images.githubusercontent.com/42038171/207494666-3eacb533-550e-4dbc-
 ## 2. Tools
 - PC with capable to run _Aduino IDE_ & _Visual Studio Code_ with a USB-A port
 - Micro USB to USB-A cable (to program the Raspberry Pi Pico)
-- Soldering iron & Solde
+- Soldering iron & Solder
 - Desoldering gun/tin extractor
-- Phillips screwdriver
-- Saw or cutter (to cut plastic plate and board)
+- Phillips head screwdriver
+- Saw or cutter (to cut the red board in two pieces)
 - Optionally: flux pen
 
 ## 2. Software to build and install/flash the firmware on the Raspberry Pi Pico
@@ -197,7 +197,7 @@ The display is stuck with double-sided tape to the red board
 
 10. Next, cut of the unused pins of the header on the red board
 
-11. Screw back the plastic holders/standoffs on the plastic plate
+11. Screw the plastic holders/standoffs back on the plastic plate
 
 12. Cover the red board with some isolating tape (e.g. Kapton tape)
 
