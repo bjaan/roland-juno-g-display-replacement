@@ -84,7 +84,7 @@ These instructions are for Windows 10 and will be similar for other OS's support
  8. Remove the knobs from the front (the silver volume sliders and round pots and one encoder knob)
  9. Remove the remaining boards
  10. You see in the middle one board with one small approx. 5 by 2.5 cm board. It is indicated with _JUNO G LCD BOARD ASSY JPN 733402078_
- 11. You see that it held by 4 clips you can press in with your fingers, when you press them in you can free it
+ 11. You see that it held by 4 clips. You can press these in with your fingernails, when you press them in you can free the board
  12. Now remove the original display
  13. All boards should be removed now
 
@@ -167,7 +167,7 @@ First we need to remove the old hardware from the original display module, to th
 
 ### 3.7. Strip the new display
 
-The display is stuck with double-sided tape to red board
+The display is stuck with double-sided tape to the red board
 
 1. At the back disconnect the flat cable from the connector (you need to slide out the black part first to open de connector)
 
@@ -183,7 +183,7 @@ The display is stuck with double-sided tape to red board
 
 6. Fold the flat cable over
 
-7. Now stick the red board on the other side, aligning the flat cable with double-sided tape on the other side and reconnect the flat cable.
+7. Now stick the red board on the other side, aligning the flat cable with double-sided tape on the other sides and reconnect the flat cable.
 
       You end up with a unit like this now:
 
@@ -197,7 +197,7 @@ The display is stuck with double-sided tape to red board
 
 10. Next, cut of the unused pins of the header on the red board
 
-11. Screw the back the plastic holders/standoffs
+11. Screw back the plastic holders/standoffs on the plastic plate
 
 12. Cover the red board with some isolating tape (e.g. Kapton tape)
 
@@ -205,15 +205,15 @@ The display is stuck with double-sided tape to red board
 
       ![Assembly](docs/new_display_assembly2.png)
 
-13. Screw back together the assembly back on the board and push the Raspberry Pi and _JUNO G LCD BOARD ASSY JPN 733402078_ board through the hole to make sure it ends up on the backside of the board.
+13. Screw the assembly back together on the board, while you push the Raspberry Pi and _JUNO G LCD BOARD ASSY JPN 733402078_ board through the hole to make sure it ends up on the backside of the board.
 
       ![Assembly](docs/new_display_assembly3.png)
 
-14. Place the _JUNO G LCD BOARD ASSY JPN 733402078_ board back and stick isolating tape on the Raspberry Pi Pico
+14. Place the _JUNO G LCD BOARD ASSY JPN 733402078_ board back on the 4 clips and stick isolating tape on the Raspberry Pi Pico to make sure it doesn't make any contact with other boards
 
       ![Assembly](docs/new_display_assembled.png)
 
-15. Remove the display protector (transparent sticker) and place black tape or cutout a piece of black paper which you stick with double-sided tape, to black-out/cover the non-display area
+15. Remove the display protector (transparent sticker) and place black tape or cutout a piece of black paper which you stick with double-sided tape, to black-out/cover the non-display area. It is recommended to put a small square of thin cardboard on the flat cable as it will leak light if the tape or paper is too thin.
 
       ![Assembly](docs/new_display_taped.png)
 
