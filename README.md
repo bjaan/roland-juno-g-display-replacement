@@ -4,10 +4,14 @@ The _Roland Juno-G_ was released in 2006 and is a 61-note workstation keyboard w
 
 This forked project aims to improve the display performance and provide proper how-to documentation.
 
+
 ![Replacement Done](docs/replacement_done.png)
 ![Welcome](docs/replacement_welcome.png)
+
 In Action:
-![In Action (Video)](docs/new_display_in_action.mp4)
+
+https://user-images.githubusercontent.com/42038171/207494666-3eacb533-550e-4dbc-931e-dc5271e123a4.mp4
+
 
 ## 1. Bill of Materials
 
