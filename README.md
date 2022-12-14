@@ -6,6 +6,8 @@ This forked project aims to improve the display performance and provide proper h
 
 ![Replacement Done](docs/replacement_done.png)
 ![Welcome](docs/replacement_welcome.png)
+In Action:
+<video src='docs/new_display_in_action.mp4'></video>
 
 ## 1. Bill of Materials
 
@@ -139,7 +141,7 @@ Using the jumper wires connect the LCD module to Raspberry Pi Pico.  Slide the f
 |BL|BL|GP17|
 |SDO|MISO|GP16|
   
-Connect the _JUNO G LCD BOARD ASSY JPN 733402078_ to the main board again and apply power again and ensure that the new display is working.  It will show the message _Roland JUNO-G LCD Emulator v0.2_ for a short while and it should start showing the actual display's contents.
+Connect the _JUNO G LCD BOARD ASSY JPN 733402078_ to the main board again and apply power again and ensure that the new display is working.  It will show the message _Roland JUNO-G LCD Emulator v0.3_ for a short while and it should start showing the actual display's contents.
 
    ![Disassembly](docs/first_in_action.png)
 
@@ -173,7 +175,7 @@ The display is stuck with double-sided tape to red board
 
 4. Cut off the card reader section of the red board.  Cut the spots on both sides of the flat cable connector. A dremel was used to cut the board partly on both side and it was then broken off. See the next picture to see where.
 
-5. Now stick the display on the middle of the transparent plate
+5. Now stick the display on the middle of the transparent plate, you want the display area of the LCD to be in de middle and 1 mm below the top, where thee backgrounds LEDS are. That way the entire display area will be visible through the window.
 
 6. Fold the flat cable over
 
