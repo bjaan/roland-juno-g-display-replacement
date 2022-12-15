@@ -74,10 +74,14 @@ void setup()
   tft.setTextSize(2);
   
   tft.setTextDatum(TC_DATUM);
-  tft.drawString("Roland JUNO-G LCD Emulator v0.3", tft.width() /2, tft.height() / 2 - 20 );
+  tft.drawString("Roland JUNO-G LCD Emulator v0.4", tft.width() /2, tft.height() / 2 - 20 );
   //tft.drawString("CPU_FREQ:" + String(rp2040.f_cpu()), tft.width() /2, tft.height() / 2 + 10 );
   delay(500);
   fillscreenInterlaced(TFT_WHITE);
+  
+  //set back-buffers to full black
+  memset((void *) back_buffer_cs1, 255, sizeof back_buffer_cs1);
+  memset((void *) back_buffer_cs2, 255, sizeof back_buffer_cs2);
 #endif
 
 #ifdef DRAW_PINOUT  
@@ -104,23 +108,17 @@ volatile uint8_t page_cs2 = 0;
 volatile uint8_t xx_cs1 = 0;
 volatile uint8_t xx_cs2 = 0;
 
-unsigned long time_now = 0;
-unsigned long my_millis = 0;
-bool forcedRedraw = false;
+bool led_on = false;
+long latest_packet_timestamp_cs1 = 0;
+long latest_packet_timestamp_cs2 = 0;
 
 void loop()
 {  
-  my_millis = millis();
-
-  if(my_millis > 20 + lcdJunoG_cs1.latest_packet_timestamp() && my_millis > 20 + lcdJunoG_cs2.latest_packet_timestamp()) {
-    //Serial.println("no data!");
-    if (my_millis > 1000 + lcdJunoG_cs1.latest_packet_timestamp() && my_millis > 1000 + lcdJunoG_cs2.latest_packet_timestamp()) {
-      //we havent received new data for over a second, let's force a redraw
-      forcedRedraw = false;
-    } else {
-      return; // not yet a second to force a redraw
-    }
+  if(latest_packet_timestamp_cs1 == lcdJunoG_cs1.latest_packet_timestamp() && latest_packet_timestamp_cs2 == lcdJunoG_cs2.latest_packet_timestamp()) {
+    return; // no packet received
   } 
+  latest_packet_timestamp_cs1 = lcdJunoG_cs1.latest_packet_timestamp();
+  latest_packet_timestamp_cs2 = lcdJunoG_cs2.latest_packet_timestamp();
   tft.startWrite();
   for (uint i = 0; i < 123*12; i++)  
   {
@@ -136,8 +134,8 @@ void loop()
           xx_cs1 = 0;
         } 
       } else if (rs == 1 ) {
-        if (xx_cs1 < 120) {  // avoid overlap the right area
-          if (back_buffer_cs1[i] != val || forcedRedraw) {
+        if (xx_cs1 < 120) {  // avoid overlap of the right area
+          if (back_buffer_cs1[i] != val) {
             int16_t x = tft_xoffset + xx_cs1 * ZOOM_X;
             int16_t y = tft_yoffset + (page_cs1 * 8) * ZOOM_Y;
             //for (int b = 0; b < 8; b++ ) {
@@ -178,8 +176,8 @@ void loop()
           xx_cs2 = 0;
         } 
       } else if (rs == 1) {
-        if (xx_cs2 < 120) {  // avoid overlap the right area
-          if (back_buffer_cs2[i] != val || forcedRedraw) {
+        if (xx_cs2 < 120) {  // avoid overlap of the right area
+          if (back_buffer_cs2[i] != val) {
             int16_t x = tft_xoffset + xx_cs2 * ZOOM_X + 120 * ZOOM_X;
             int16_t y = tft_yoffset + (page_cs2 * 8) * ZOOM_Y;
             //for (int b = 0; b < 8; b++ ) {
@@ -208,15 +206,9 @@ void loop()
       }
       back_buffer_cs2[i] = val;
     }
-    tft.endWrite();
   }
-  if (forcedRedraw) {
-    forcedRedraw = false;
-  }
-/*
+  tft.endWrite();
   // Blink the LED to indicate that a packet was received 
-  digitalWrite(LED_BUILTIN, HIGH);
-  delay(10);
-  digitalWrite(LED_BUILTIN, LOW);
-*/
+  if (!led_on) digitalWrite(LED_BUILTIN, HIGH); else digitalWrite(LED_BUILTIN, LOW);
+  led_on != led_on;
 }

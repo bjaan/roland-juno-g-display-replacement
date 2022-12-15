@@ -4,14 +4,10 @@ The _Roland Juno-G_ was released in 2006 and is a 61-note workstation keyboard w
 
 This forked project aims to improve the display performance and provide proper how-to documentation.
 
-
 ![Replacement Done](docs/replacement_done.png)
 ![Welcome](docs/replacement_welcome.png)
 
-In Action:
-
-https://user-images.githubusercontent.com/42038171/207494666-3eacb533-550e-4dbc-931e-dc5271e123a4.mp4
-
+In Action: See [Video](docs/new_display_in_action.mp4)
 
 ## 1. Bill of Materials
 
@@ -26,10 +22,10 @@ https://user-images.githubusercontent.com/42038171/207494666-3eacb533-550e-4dbc-
 ## 2. Tools
 - PC with capable to run _Aduino IDE_ & _Visual Studio Code_ with a USB-A port
 - Micro USB to USB-A cable (to program the Raspberry Pi Pico)
-- Soldering iron & Solder
+- Soldering iron & Solde
 - Desoldering gun/tin extractor
-- Phillips head screwdriver
-- Saw or cutter (to cut the red board in two pieces)
+- Phillips screwdriver
+- Saw or cutter (to cut plastic plate and board)
 - Optionally: flux pen
 
 ## 2. Software to build and install/flash the firmware on the Raspberry Pi Pico
@@ -84,7 +80,7 @@ These instructions are for Windows 10 and will be similar for other OS's support
  8. Remove the knobs from the front (the silver volume sliders and round pots and one encoder knob)
  9. Remove the remaining boards
  10. You see in the middle one board with one small approx. 5 by 2.5 cm board. It is indicated with _JUNO G LCD BOARD ASSY JPN 733402078_
- 11. You see that it held by 4 clips. You can press these in with your fingernails, when you press them in you can free the board
+ 11. You see that it held by 4 clips you can press in with your fingers, when you press them in you can free it
  12. Now remove the original display
  13. All boards should be removed now
 
@@ -145,7 +141,7 @@ Using the jumper wires connect the LCD module to Raspberry Pi Pico.  Slide the f
 |BL|BL|GP17|
 |SDO|MISO|GP16|
   
-Connect the _JUNO G LCD BOARD ASSY JPN 733402078_ to the main board again and apply power again and ensure that the new display is working.  It will show the message _Roland JUNO-G LCD Emulator v0.3_ for a short while and it should start showing the actual display's contents.
+Connect the _JUNO G LCD BOARD ASSY JPN 733402078_ to the main board again and apply power again and ensure that the new display is working.  It will show the message _Roland JUNO-G LCD Emulator v0.4_ for a short while and it should start showing the actual display's contents.
 
    ![Disassembly](docs/first_in_action.png)
 
@@ -167,7 +163,7 @@ First we need to remove the old hardware from the original display module, to th
 
 ### 3.7. Strip the new display
 
-The display is stuck with double-sided tape to the red board
+The display is stuck with double-sided tape to red board
 
 1. At the back disconnect the flat cable from the connector (you need to slide out the black part first to open de connector)
 
@@ -183,7 +179,7 @@ The display is stuck with double-sided tape to the red board
 
 6. Fold the flat cable over
 
-7. Now stick the red board on the other side, aligning the flat cable with double-sided tape on the other sides and reconnect the flat cable.
+7. Now stick the red board on the other side, aligning the flat cable with double-sided tape on the other side and reconnect the flat cable.
 
       You end up with a unit like this now:
 
@@ -197,7 +193,7 @@ The display is stuck with double-sided tape to the red board
 
 10. Next, cut of the unused pins of the header on the red board
 
-11. Screw the plastic holders/standoffs back on the plastic plate
+11. Screw the back the plastic holders/standoffs
 
 12. Cover the red board with some isolating tape (e.g. Kapton tape)
 
@@ -205,15 +201,15 @@ The display is stuck with double-sided tape to the red board
 
       ![Assembly](docs/new_display_assembly2.png)
 
-13. Screw the assembly back together on the board, while you push the Raspberry Pi and _JUNO G LCD BOARD ASSY JPN 733402078_ board through the hole to make sure it ends up on the backside of the board.
+13. Screw back together the assembly back on the board and push the Raspberry Pi and _JUNO G LCD BOARD ASSY JPN 733402078_ board through the hole to make sure it ends up on the backside of the board.
 
       ![Assembly](docs/new_display_assembly3.png)
 
-14. Place the _JUNO G LCD BOARD ASSY JPN 733402078_ board back on the 4 clips and stick isolating tape on the Raspberry Pi Pico to make sure it doesn't make any contact with other boards
+14. Place the _JUNO G LCD BOARD ASSY JPN 733402078_ board back and stick isolating tape on the Raspberry Pi Pico
 
       ![Assembly](docs/new_display_assembled.png)
 
-15. Remove the display protector (transparent sticker) and place black tape or cutout a piece of black paper which you stick with double-sided tape, to black-out/cover the non-display area. It is recommended to put a small square of thin cardboard on the flat cable as it will leak light if the tape or paper is too thin.
+15. Remove the display protector (transparent sticker) and place black tape or cutout a piece of black paper which you stick with double-sided tape, to black-out/cover the non-display area
 
       ![Assembly](docs/new_display_taped.png)
 
