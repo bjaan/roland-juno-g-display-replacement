@@ -12,8 +12,8 @@ In Action: See [Video](docs/new_display_in_action.mp4)
 ## 1. Bill of Materials
 
 - 1 x Raspberry Pi Pico
-- 1 x LCD Display ILI9488 5.0" module (variant without touchscreen) https://www.aliexpress.com/item/1005003033844928.html
-- 17 x Wires to solder together boards (5 cm long white ones in my case: very easy to solder as they were pre-tinned https://nl.aliexpress.com/item/32822880152.html)
+- 1 x LCD Display 320X480 ILI9488 4.0" module (variant without touchscreen) https://www.aliexpress.com/item/1005003033844928.html
+- 17 x Wires to solder together boards (5 cm long white ones in my case: very easy to solder as they were pre-tinned https://www.aliexpress.com/item/32822880152.html)
 - 9 x Jumper wires to connect headers on the display and to be soldered on the Raspberry Pi Pico like these https://www.amazon.de/-/en/gp/product/B07KFQ6483
 - 1 x piece of black of paper (can be printed) or black tape
 - A bit of isolating tape (e.g. Kapton tape)
@@ -50,7 +50,7 @@ These instructions are for Windows 10 and will be similar for other OS's support
 
       ![Hardware plugged in](docs/hardware_plugged_in.png)
 
-3. In _Visual Studio Code_, open the folder where have the project located
+3. In _Visual Studio Code_, open the folder where have the project is located
 4. _PlatformIO_ should now load and be selectable in the left-hand side, click on the alien-icon and then select _Build_ to build the firmware:
 
       ![Build Action](docs/platform_io_build.png)
@@ -141,7 +141,7 @@ Using the jumper wires connect the LCD module to Raspberry Pi Pico.  Slide the f
 |BL|BL|GP17|
 |SDO|MISO|GP16|
   
-Connect the _JUNO G LCD BOARD ASSY JPN 733402078_ to the main board again and apply power again and ensure that the new display is working.  It will show the message _Roland JUNO-G LCD Emulator v0.4_ for a short while and it should start showing the actual display's contents.
+Connect the _JUNO G LCD BOARD ASSY JPN 733402078_ to the main board again and apply power again and ensure that the new display is working.  It will show the message _Roland JUNO-G LCD Emulator v0.5_ for a short while and it should start showing the actual display's contents.
 
    ![Disassembly](docs/first_in_action.png)
 
@@ -219,7 +219,7 @@ Disconnect cables from the boards as needed and reassemble the keyboard again.
 
 ## Notes
 
-This project uses the Programmable I/O (PIO) feature on Raspberry Pi Pico instead of "bitbanging" to read the original display protocol.
+This project uses the Programmed I/O (PIO) feature on Raspberry Pi Pico instead of "bitbanging" to read the original display protocol.
 
 Contrary to bitbanging, PIO uses no CPU cycles. Here is an overview about PIO on the Pico https://blues.io/blog/raspberry-pi-pico-pio/. 
 
