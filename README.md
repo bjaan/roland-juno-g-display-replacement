@@ -233,4 +233,4 @@ Service Notes extract:
 
 ![Service Notes extract](docs/juno_g_service_notes_extract.png)
 
-[Original read-me by GitHub user dpeddi](blob/main/docs/dpeddi.md)
+[Original read-me by GitHub user dpeddi](docs/dpeddi.md)
