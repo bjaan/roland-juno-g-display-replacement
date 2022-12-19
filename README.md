@@ -22,13 +22,15 @@ In Action: See [Video](docs/new_display_in_action.mp4)
 ## 2. Tools
 - PC with capable to run _Aduino IDE_ & _Visual Studio Code_ with a USB-A port
 - Micro USB to USB-A cable (to program the Raspberry Pi Pico)
-- Soldering iron & Solde
+- Soldering iron & Solder
 - Desoldering gun/tin extractor
 - Phillips screwdriver
 - Saw or cutter (to cut plastic plate and board)
 - Optionally: flux pen
 
 ## 2. Software to build and install/flash the firmware on the Raspberry Pi Pico
+
+_Note: this section can be skipped: as the software build is available under Releases_
 
 These instructions are for Windows 10 and will be similar for other OS's supporting Arduino.
 
@@ -44,6 +46,8 @@ These instructions are for Windows 10 and will be similar for other OS's support
       ![Platform IO Installed](docs/platformio_externsion_to_install.png)
 
 ## 3. Build the firmware and flash the Raspberry Pi Pico
+
+_Note: when you skipped the previous section, you only need to copy the .uf2 file available under Releases after step 1 on the new available drive representing the Raspberry Pi Pico to flash it_
 
 1. Plug the USB cable in the port on the Raspberry Pi Pico and plug - while holding down the BOOTSEL button - in the PC's USB-A port. The PC should now detect the new hardware.
 2. Drivers are installed for the new hardware, Windows will mount a new drive (see below) and it should show up in Device Manager, when the shown _Devices by container_ option is selected, like below:
@@ -229,4 +233,4 @@ Service Notes extract:
 
 ![Service Notes extract](docs/juno_g_service_notes_extract.png)
 
-[Original read-me by GitHub user dpeddi](../docs/dpeddi.md)
+[Original read-me by GitHub user dpeddi](blob/main/docs/dpeddi.md)
