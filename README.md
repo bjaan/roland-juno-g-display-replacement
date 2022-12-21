@@ -20,7 +20,7 @@ In Action: See [Video](docs/new_display_in_action.mp4)
 - Double-sided tape or liquid glue
 
 ## 2. Tools
-- PC with capable to run _Aduino IDE_ & _Visual Studio Code_ with a USB-A port
+- PC capable to run _Aduino IDE_ & _Visual Studio Code_ with a USB-A port
 - Micro USB to USB-A cable (to program the Raspberry Pi Pico)
 - Soldering iron & Solder
 - Desoldering gun/tin extractor
@@ -74,27 +74,33 @@ _Note: when you skipped the previous section, you only need to copy the .uf2 fil
 
 ### 3.1. Disassemble the keyboard
 
+_Note: it is recommended to download the Service Notes and have a look at the Exploded View on pages 6 and 7 to see the different components in the keyboard_
+
+_Note: these instructions want you to remove all circuit boards from the keyboard first to build a test rig, so that the display (flat cable) connector can be easily accessed for testing. In theory all this work is not needed if you have the new screen assembly already made. It just makes testing and ensuring it works easier, albeit more work to disassemble and reassemble all circuit boards, which comes with an increased risk of breaking other parts.  On the other hand, just removing the back cover, the JACK BOARD (the one with the MIDI ports and jacks), and some standoffs holding the middle one (PANEL-B BOARD) down to remove the middle one (which holds the display) should be sufficient to be able build and replace the display. The issue is that the middle board is connected with two flat cables (to the PANEL A & PANEL C BOARD), one on the right and one the right one and it is almost impossible to reconnect those with when these are still screwed down._
+
  1. Remove the back cover
  2. Unplug the gray cable connecting to the keypad
  3. Now you must remove all boards - keep the screws in seperate containers
  4. Remove the jack-board it has 4 screws in the back as well
- 5. As you go and removing the remaining boards, unplug the connectors 1 by one as needed, as unscrew standoffs that have wirebusses attached - do know cut them loose
+ 5. As you go and removing the remaining boards, unplug the connectors one by one, as needed. Unscrew the standoffs that have wirebusses attached - do now cut these loose
  6. Now remove the main board (the one with silver square CPU and the card reader)
  7. Remove the transparent plastic separators
  8. Remove the knobs from the front (the silver volume sliders and round pots and one encoder knob)
- 9. Remove the remaining boards
- 10. You see in the middle one board with one small approx. 5 by 2.5 cm board. It is indicated with _JUNO G LCD BOARD ASSY JPN 733402078_
- 11. You see that it held by 4 clips you can press in with your fingers, when you press them in you can free it
+ 9. Remove the remaining boards: PANEL-A BOARD, PANEL-B BOARD, and PANEL-C BOARD
+ 10. You see attached to the middle board (PANEL-B BOARD) a one small approx. 5 by 2.5 cm board. It is indicated with _JUNO G LCD BOARD ASSY JPN 733402078_ (indicated as number 23 in the Service Notes' Exploded View on page 6)
+ 11. You see that it's held by 4 clips that you can press in with your fingers, when you press them in you can free from the larger board
  12. Now remove the original display
  13. All boards should be removed now
 
 ### 3.2. Prepare the JUNO G LCD BOARD ASSY JPN 733402078 board
  
- Remove one the two flat cable connectors, it will used to wire the Raspberry Pi Pico. It can very hard to do this, even with a desoldering gun as the pins of the connector are very thin/sharp. Recommended is to remove CN16, so that the pin numbers match: there is a small 18 and 1 indicated on the board. These indicate pin 18 and 1. 
+ Remove one of the two flat cable connectors, it will used to wire the Raspberry Pi Pico. It can very hard to do this, even with a desoldering gun as the pins of the connector are very thin andsharp. Recommended is to remove the flat cable connected indicated with CN16, so that the pin numbers below match: there is a small 18 and 1 indicated on the board. These indicate pin 18 and 1.
 
 ### 3.3. Build a test rig
 
-Next you want to reassemble all the boards on a flat surface. You can place them on a bath towel. Make sure all the connections have been made correctly and that boards to do touch each other and are not placed on a conducting surface:
+_Note: in case you're not sure how the seperate boards should be connected there is a wiring diagram available in the Service Notes on page 14._
+
+Next, you want to reassemble all the boards on a flat surface. You can place them on a bath towel for instance. Make sure all the connections have been made correctly and that boards to do touch each other and are not placed on a conducting surface:
 
    ![Upload Action](docs/test_rig.png)
 
@@ -181,7 +187,7 @@ The display is stuck with double-sided tape to red board
 
 5. Now stick the display on the middle of the transparent plate, you want the display area of the LCD to be in de middle and 1 mm below the top, where thee backgrounds LEDS are. That way the entire display area will be visible through the window.
 
-6. Fold the flat cable over
+6. Fold the flat cable over to the other side of the transparent plate
 
 7. Now stick the red board on the other side, aligning the flat cable with double-sided tape on the other side and reconnect the flat cable.
 
