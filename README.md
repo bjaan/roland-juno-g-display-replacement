@@ -2,7 +2,7 @@
 
 The _Roland Juno-G_ was released in 2006 and is a 61-note workstation keyboard which incorporates the sound engine from the Fantom-X, with 128-note polyphony. As the display in many cases has stopped working the keyboard's interactive features cannot be used anymore. Roland does not have/support for the keyboard and the official replacement part is out of stock. The _Roland JUNO-G LCD display replacement_ offers a solution to replace the defective LCD unit.  The first code has been originally written by GitHub user _dpeddi_ as he published it in his [LCDJunoG](https://github.com/dpeddi/LCDJunoG) repository.
 
-This forked project aims to improve the display performance and provide proper how-to documentation.
+This forked project improves the performance of the original code and provides how-to documentation with pictures to build your own.
 
 ![Replacement Done](docs/replacement_done.png)
 ![Welcome](docs/replacement_welcome.png)
