@@ -15,7 +15,7 @@ In Action: See [Video](docs/new_display_in_action.mp4)
 - 1 x LCD Display 320X480 ILI9488 4.0" module (variant without touchscreen) https://www.aliexpress.com/item/1005003033844928.html
 - 17 x Wires to solder together boards (5 cm long white ones in my case: very easy to solder as they were pre-tinned https://www.aliexpress.com/item/32822880152.html)
 - 9 x Jumper wires to connect headers on the display and to be soldered on the Raspberry Pi Pico like these https://www.amazon.de/-/en/gp/product/B07KFQ6483
-- 1 x piece of black of paper (can be printed) or black tape
+- 1 x piece of black paper (can be printed) or black tape
 - A bit of isolating tape (e.g. Kapton tape)
 - Double-sided tape or liquid glue
 
@@ -54,7 +54,7 @@ _Note: when you skipped the previous section, you only need to copy the .uf2 fil
 
       ![Hardware plugged in](docs/hardware_plugged_in.png)
 
-3. In _Visual Studio Code_, open the folder where have the project is located
+3. In _Visual Studio Code_, open the folder where have the project is located (where the downloaded ZIP-file is extracted)
 4. _PlatformIO_ should now load and be selectable in the left-hand side, click on the alien-icon and then select _Build_ to build the firmware:
 
       ![Build Action](docs/platform_io_build.png)
@@ -118,8 +118,8 @@ Next wire the Raspberry Pi Pico to the _JUNO G LCD BOARD ASSY JPN 733402078_ boa
 |17|GND|GND (next to VSYS)|
 |16|+3V|(not connected)|
 |15|RST|GP14|
-|14|CS1|GP12|
-|13|CS2|GP13|
+|14|CS1|GP13|
+|13|CS2|GP12|
 |12|RS|GP11|
 |11|WE|GP10|
 |10|D0|GP2|
