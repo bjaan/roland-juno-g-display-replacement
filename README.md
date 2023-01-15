@@ -20,7 +20,7 @@ In Action: See [Video](docs/new_display_in_action.mp4)
 - Double-sided tape or liquid glue
 
 ## 2. Tools
-- PC capable to run _Aduino IDE_ & _Visual Studio Code_ with a USB-A port
+- PC capable to run _Arduino IDE_ & _Visual Studio Code_ with a USB-A port
 - Micro USB to USB-A cable (to program the Raspberry Pi Pico)
 - Soldering iron & Solder
 - Desoldering gun/tin extractor
@@ -173,7 +173,7 @@ First we need to remove the old hardware from the original display module, to th
 
 ### 3.7. Strip the new display
 
-The display is stuck with double-sided tape to red board
+The display is stuck with double-sided tape to the red board
 
 1. At the back disconnect the flat cable from the connector (you need to slide out the black part first to open de connector)
 
