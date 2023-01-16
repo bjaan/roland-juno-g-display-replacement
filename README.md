@@ -159,7 +159,7 @@ Connect the _JUNO G LCD BOARD ASSY JPN 733402078_ to the main board again and ap
 
 First we need to remove the old hardware from the original display module, to then remake a new assembly for the new display
 
-1. Remove screws and black plastic holders/standoffs:
+1. Remove the screws and black plastic holders/standoffs:
 
       ![Disassembly](docs/screen_assembly_shown.png)
 
@@ -175,7 +175,7 @@ First we need to remove the old hardware from the original display module, to th
 
 The display is stuck with double-sided tape to the red board
 
-1. At the back disconnect the flat cable from the connector (you need to slide out the black part first to open de connector)
+1. At the back disconnect the flat cable from the connector (you need to slide out the black part first to open the connector, before removing the flat cable)
 
 2. Use a butter knife or flat spudger to split the display apart from the board. Be careful not to damage the flat cable, so pry free from the other side!
 
@@ -183,9 +183,9 @@ The display is stuck with double-sided tape to the red board
 
 3. Remove the remaining double-sided tape from the display
 
-4. Cut off the card reader section of the red board.  Cut the spots on both sides of the flat cable connector. A dremel was used to cut the board partly on both side and it was then broken off. See the next picture to see where.
+4. Cut off the card reader section of the red board.  Cut the spots on both sides of the flat cable connector. A dremel was used to cut the board partly on both sides and it was then broken off. See the next picture to see where you need to cut.
 
-5. Now stick the display on the middle of the transparent plate, you want the display area of the LCD to be in de middle and 1 mm below the top, where thee backgrounds LEDS are. That way the entire display area will be visible through the window.
+5. Now stick the display on the middle of the transparent plate, you want the display area of the LCD to be in de middle and 1 mm below the top, where the old background light LEDS are. That way the entire display area will be visible through the window.
 
 6. Fold the flat cable over to the other side of the transparent plate
 
@@ -197,11 +197,11 @@ The display is stuck with double-sided tape to the red board
 
       We need to assure we have room (height of the holders/standoffs) for the new one to fit.
 
-8. Remove the yellow plastic from the header on the board. To do so remove the jumper wires from the header, temporarly unstick the board, disconnect the flat cable, heat the plastic with lighter/heat gun and slide it to the top.
+8. Remove the yellow plastic from the header on the board. To do so: first remove the jumper wires from the header, then  disconnect the flat cable and (temporarly) unstick the board (fresh tape has not bounded strongly yet), heat the plastic with a lighter/heat gun and slide it to the top, to remove it (heat makes the plastic soft and easier to slide upwards and remove).
 
 9. Place the jumper wires back, fold them over as close as possible to the board. So that they lay flat.
 
-10. Next, cut of the unused pins of the header on the red board
+10. Next, cut off the unused pins of the header on the red board
 
 11. Screw the back the plastic holders/standoffs
 
@@ -211,7 +211,7 @@ The display is stuck with double-sided tape to the red board
 
       ![Assembly](docs/new_display_assembly2.png)
 
-13. Screw back together the assembly back on the board and push the Raspberry Pi and _JUNO G LCD BOARD ASSY JPN 733402078_ board through the hole to make sure it ends up on the backside of the board.
+13. Screw the assembly back together on the board and push the Raspberry Pi and _JUNO G LCD BOARD ASSY JPN 733402078_ board through the hole to make sure it ends up on the backside of the board.
 
       ![Assembly](docs/new_display_assembly3.png)
 
