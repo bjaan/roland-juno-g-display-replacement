@@ -135,7 +135,7 @@ Next wire the Raspberry Pi Pico to the _JUNO G LCD BOARD ASSY JPN 733402078_ boa
 
 ### 3.5. Wire the LCD module
 
-Using the jumper wires connect the LCD module to Raspberry Pi Pico.  Slide the female end on the pin header and solder the pin to the Raspberry Pi and cut off the excess. It needs to flush to the surface.
+Using the jumper wires connect the LCD module to Raspberry Pi Pico.  Slide the female end on the pin header and solder the pin to the Raspberry Pi and cut off the excess. It needs flat on the surface.
 
    ![Disassembly](docs/screen_and_pi_connected.png)
 
@@ -229,7 +229,7 @@ Disconnect cables from the boards as needed and reassemble the keyboard again.
 
 ## Notes
 
-This project uses the Programmed I/O (PIO) feature on Raspberry Pi Pico instead of "bitbanging" to read the original display protocol.
+This project uses the Programmed I/O (PIO) feature on Raspberry Pi Pico instead of "bitbanging" to read the original display protocol data.
 
 Contrary to bitbanging, PIO uses no CPU cycles. Here is an overview about PIO on the Pico https://blues.io/blog/raspberry-pi-pico-pio/. 
 
