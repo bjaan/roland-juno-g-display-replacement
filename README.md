@@ -135,7 +135,7 @@ Next wire the Raspberry Pi Pico to the _JUNO G LCD BOARD ASSY JPN 733402078_ boa
 
 ### 3.5. Wire the LCD module
 
-Using the jumper wires connect the LCD module to Raspberry Pi Pico.  Slide the female end on the pin header and solder the pin to the Raspberry Pi and cut off the excess. It needs flat on the surface.
+Using the jumper wires connect the LCD module to Raspberry Pi Pico.  Slide the female end on the pin header and solder the pin to the Raspberry Pi and cut off the excess. It needs to be flat on the surface.
 
    ![Disassembly](docs/screen_and_pi_connected.png)
 
@@ -183,7 +183,7 @@ The display is stuck with double-sided tape to the red board
 
 3. Remove the remaining double-sided tape from the display
 
-4. Cut off the card reader section of the red board.  Cut the spots on both sides of the flat cable connector. A dremel was used to cut the board partly on both sides and it was then broken off. See the next picture to see where you need to cut.
+4. Cut off the card reader section of the red board.  Cut the spots on both sides of the flat cable connector. A Dremel was used to cut the board partly on both sides and it was then broken off. In the previous picture you can see where you need to cut, as indicated with the fuchsia lines.
 
 5. Now stick the display on the middle of the transparent plate, you want the display area of the LCD to be in de middle and 1 mm below the top, where the old background light LEDS are. That way the entire display area will be visible through the window.
 
