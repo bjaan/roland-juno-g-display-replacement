@@ -28,7 +28,7 @@ In Action: See [Video](docs/new_display_in_action.mp4)
 - Saw or cutter (to cut plastic plate and board)
 - Optionally: flux pen
 
-## 2. Software to build and install/flash the firmware on the Raspberry Pi Pico
+## 3. Software to build and install/flash the firmware on the Raspberry Pi Pico
 
 _Note: this section can be skipped: as the software build is available under Releases_
 
@@ -45,7 +45,7 @@ These instructions are for Windows 10 and will be similar for other OS's support
 
       ![Platform IO Installed](docs/platformio_externsion_to_install.png)
 
-## 3. Build the firmware and flash the Raspberry Pi Pico
+## 4. Build the firmware and flash the Raspberry Pi Pico
 
 _Note: when you skipped the previous section, you only need to copy the .uf2 file available under Releases after step 1 on the new available drive representing the Raspberry Pi Pico to flash it_
 
@@ -70,9 +70,9 @@ _Note: when you skipped the previous section, you only need to copy the .uf2 fil
 
       ![Upload Action](docs/platform_io_uploaded.png)
 
-## 3. Hardware
+## 5. Hardware
 
-### 3.1. Disassemble the keyboard
+### 5.1. Disassemble the keyboard
 
 _Note: it is recommended to download the Service Notes and have a look at the Exploded View on pages 6 and 7 to see the different components in the keyboard_
 
@@ -92,11 +92,11 @@ _Note: these instructions want you to remove all circuit boards from the keyboar
  12. Now remove the original display
  13. All boards should be removed now
 
-### 3.2. Prepare the JUNO G LCD BOARD ASSY JPN 733402078 board
+### 5.2. Prepare the JUNO G LCD BOARD ASSY JPN 733402078 board
  
  Remove one of the two flat cable connectors, it will used to wire the Raspberry Pi Pico. It can very hard to do this, even with a desoldering gun as the pins of the connector are very thin andsharp. Recommended is to remove the flat cable connected indicated with CN16, so that the pin numbers below match: there is a small 18 and 1 indicated on the board. These indicate pin 18 and 1.
 
-### 3.3. Build a test rig
+### 5.3. Build a test rig
 
 _Note: in case you're not sure how the seperate boards should be connected there is a wiring diagram available in the Service Notes on page 14._
 
@@ -106,7 +106,7 @@ Next, you want to reassemble all the boards on a flat surface. You can place the
 
 Connect the power supply and connect _JUNO G LCD BOARD ASSY JPN 733402078_ board, and apply power, and ensure that you can measure 5 V over pin 18 and pin 17, and that you can measure 3.3 V over pin 16 and 17.
 
-### 3.4. Wire the Raspberry Pi
+### 5.4. Wire the Raspberry Pi
 
 Remove power and disconnect the _JUNO G LCD BOARD ASSY JPN 733402078_ board.
 
@@ -133,7 +133,7 @@ Next wire the Raspberry Pi Pico to the _JUNO G LCD BOARD ASSY JPN 733402078_ boa
 |2|BRGT|GP26|
 |1|BRGT Vref|3V3|
 
-### 3.5. Wire the LCD module
+### 5.5. Wire the LCD module
 
 Using the jumper wires connect the LCD module to Raspberry Pi Pico.  Slide the female end on the pin header and solder the pin to the Raspberry Pi and cut off the excess. It needs to be flat on the surface.
 
@@ -155,7 +155,7 @@ Connect the _JUNO G LCD BOARD ASSY JPN 733402078_ to the main board again and ap
 
    ![Disassembly](docs/first_in_action.png)
 
-### 3.6. Strip the original display
+### 5.6. Strip the original display
 
 First we need to remove the old hardware from the original display module, to then remake a new assembly for the new display
 
@@ -171,7 +171,7 @@ First we need to remove the old hardware from the original display module, to th
 
 4. Now remove the white stickering & black strip to end up with a transparent plate
 
-### 3.7. Strip the new display
+### 5.7. Strip the new display
 
 The display is stuck with double-sided tape to the red board
 
@@ -223,11 +223,11 @@ The display is stuck with double-sided tape to the red board
 
       ![Assembly](docs/new_display_taped.png)
 
-### 3.7. Reassemble the keyboard
+### 5.8. Reassemble the keyboard
 
 Disconnect cables from the boards as needed and reassemble the keyboard again.
 
-## Notes
+## 6. Notes
 
 This project uses the Programmed I/O (PIO) feature on Raspberry Pi Pico instead of "bitbanging" to read the original display protocol data.
 
