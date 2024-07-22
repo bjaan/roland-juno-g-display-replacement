@@ -13,8 +13,8 @@ In Action: See [Video](docs/new_display_in_action.mp4)
 
 - 1 x Raspberry Pi Pico
 - 1 x LCD Display 320X480 ILI9488 4.0" module (variant without touchscreen) https://www.aliexpress.com/item/1005003033844928.html
-- 17 x Wires to solder together boards (5 cm long white ones in my case: very easy to solder as they were pre-tinned https://www.aliexpress.com/item/32822880152.html)
-- 9 x Jumper wires to connect headers on the display and to be soldered on the Raspberry Pi Pico like these https://www.amazon.de/-/en/gp/product/B07KFQ6483
+- 17 x Wires to solder together boards (5 cm long white ones in my case: very easy to solder as they were pre-tinned https://www.aliexpress.com/item/1005003640766115.html)
+- 9 x Jumper wires to connect headers on the display and to be soldered on the Raspberry Pi Pico like these https://www.amazon.de/-/en/EL-CP-004/dp/B01EV70C78
 - 1 x piece of black paper (can be printed) or black tape
 - A bit of isolating tape (e.g. Kapton tape)
 - Double-sided tape or liquid glue
@@ -80,7 +80,7 @@ _Note: these instructions want you to remove all circuit boards from the keyboar
 
  1. Remove the back cover
  2. Unplug the gray cable connecting to the keypad
- 3. Now you must remove all boards - keep the screws in seperate containers
+ 3. Now you must remove all boards - keep the screws in separate containers
  4. Remove the jack-board it has 4 screws in the back as well
  5. As you go and removing the remaining boards, unplug the connectors one by one, as needed. Unscrew the standoffs that have wirebusses attached - do now cut these loose
  6. Now remove the main board (the one with silver square CPU and the card reader)
@@ -94,11 +94,11 @@ _Note: these instructions want you to remove all circuit boards from the keyboar
 
 ### 5.2. Prepare the JUNO G LCD BOARD ASSY JPN 733402078 board
  
- Remove one of the two flat cable connectors, it will used to wire the Raspberry Pi Pico. It can very hard to do this, even with a desoldering gun as the pins of the connector are very thin andsharp. Recommended is to remove the flat cable connected indicated with CN16, so that the pin numbers below match: there is a small 18 and 1 indicated on the board. These indicate pin 18 and 1.
+ Remove one of the two flat cable connectors, it will used to wire the Raspberry Pi Pico. It can very hard to do this, even with a desoldering gun as the pins of the connector are very thin and sharp. Recommended is to remove the flat cable connected indicated with CN16, so that the pin numbers below match: there is a small 18 and 1 indicated on the board. These indicate pin 18 and 1.
 
 ### 5.3. Build a test rig
 
-_Note: in case you're not sure how the seperate boards should be connected there is a wiring diagram available in the Service Notes on page 14._
+_Note: in case you're not sure how the separate boards should be connected there is a wiring diagram available in the Service Notes on page 14._
 
 Next, you want to reassemble all the boards on a flat surface. You can place them on a bath towel for instance. Make sure all the connections have been made correctly and that boards to do touch each other and are not placed on a conducting surface:
 
@@ -229,9 +229,9 @@ Disconnect cables from the boards as needed and reassemble the keyboard again.
 
 ## 6. Notes
 
-This project uses the Programmed I/O (PIO) feature on Raspberry Pi Pico instead of "bitbanging" to read the original display protocol data.
+This project uses the Programmed I/O (PIO) feature on Raspberry Pi Pico instead of "bit-banging" to read the original display protocol data.
 
-Contrary to bitbanging, PIO uses no CPU cycles. Here is an overview about PIO on the Pico https://blues.io/blog/raspberry-pi-pico-pio/. 
+Contrary to bit-banging, PIO uses no CPU cycles. Here is an overview about PIO on the Pico https://blues.io/blog/raspberry-pi-pico-pio/. 
 
 The original display uses two CS (Chip Select) lines, as the original screen is divided in two parts, one part gets updated through one CS line.
 
